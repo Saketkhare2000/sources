@@ -10,17 +10,8 @@ function classNames(...classes) {
 export default function Example() {
   const [news, setNews] = useState([]);
   //current tab
-  const [currentTab, setCurrentTab] = useState("");
-  useEffect(() => {
-    axios
-      .get(
-        `https://newsapi.org/v2/top-headlines?category=${currentTab}&country=in&apiKey=be1303bdbbf94db1b5a45fb523497a11
-        `
-      )
-      .then((res) => {
-        setNews(res.data.articles);
-      });
-  }, [currentTab]);
+  const [currentTab, setCurrentTab] = useState("science");
+  useEffect(() => {}, [currentTab]);
   const [categories] = useState({
     Entertainment: "Entertainment",
     Business: "Business",
@@ -29,38 +20,22 @@ export default function Example() {
     Sports: "Sports",
     Technology: "Technology",
   });
-  //   const categories = [
-  //     {
-  //       name: "Entertainment",
-  //       value: "Entertainment",
-  //     },
-  //     {
-  //       name: "Business",
-  //       value: "Business",
-  //     },
-  //     {
-  //       name: "Health",
-  //       value: "Health",
-  //     },
-  //     {
-  //       name: "Science",
-  //       value: "Science",
-  //     },
-  //     {
-  //       name: "Sports",
-  //       value: "Sports",
-  //     },
-  //     {
-  //       name: "Technology",
-  //       value: "Technology",
-  //     },
-  //   ];
+  useEffect(() => {
+    axios
+      .get(
+        `https://backend.saketkhare2000.repl.co/api/news?category=${currentTab}&country=in`
+      )
+      .then((res) => {
+        setNews(res.data);
+      });
+  }, []);
 
   return (
     <div className=" lg:max-w-5xl mx-auto ">
       <h2 className="font-sans text-5xl font-bold py-7 px-5 text-white">
         Home
       </h2>
+
       <div className="w-full p-5 py-4">
         <Tab.Group>
           <Tab.List className="flex space-x-4 rounded overflow-x-auto">
