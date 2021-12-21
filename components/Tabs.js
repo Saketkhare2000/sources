@@ -10,11 +10,12 @@ function classNames(...classes) {
 export default function Example() {
   const [news, setNews] = useState([]);
   //current tab
-  const [currentTab, setCurrentTab] = useState("sports");
+  const [currentTab, setCurrentTab] = useState("");
   useEffect(() => {
     axios
       .get(
-        `https://newsapi.org/v2/top-headlines?category=${currentTab}&country=in&apiKey=50431c5b15f84f16babb377b1eca617c`
+        `https://newsapi.org/v2/top-headlines?category=${currentTab}&country=in&apiKey=be1303bdbbf94db1b5a45fb523497a11
+        `
       )
       .then((res) => {
         setNews(res.data.articles);
