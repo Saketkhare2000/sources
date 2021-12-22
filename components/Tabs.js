@@ -29,7 +29,7 @@ export default function Example() {
       //   `https://newsapi.org/v2/top-headlines?category=${currentTab}&country=in&apiKey=50431c5b15f84f16babb377b1eca617c`
       // )
       .then((res) => {
-        setNews(res.data.articles);
+        setNews(res.data);
       });
   }, [currentTab]);
 
