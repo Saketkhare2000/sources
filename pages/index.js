@@ -4,7 +4,7 @@ import Tabs from "../components/Tabs";
 
 export default function Home() {
   return (
-    <div className="h-full bg-neutral-900">
+    <div className="bg-neutral-900">
       <Head>
         <title>Sources</title>
         <link rel="icon" href="/favicon.ico" />
