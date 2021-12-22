@@ -22,12 +22,12 @@ export default function Example() {
   });
   useEffect(() => {
     axios
-      // .get(
-      //   `https://backend.saketkhare2000.repl.co/api/news?category=${currentTab}&country=in`
-      // )
       .get(
-        `https://newsapi.org/v2/top-headlines?category=${currentTab}&country=in&apiKey=50431c5b15f84f16babb377b1eca617c`
+        `https://backend.saketkhare2000.repl.co/api/news?category=${currentTab}&country=in`
       )
+      // .get(
+      //   `https://newsapi.org/v2/top-headlines?category=${currentTab}&country=in&apiKey=50431c5b15f84f16babb377b1eca617c`
+      // )
       .then((res) => {
         setNews(res.data.articles);
       });
