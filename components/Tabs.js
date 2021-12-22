@@ -10,7 +10,7 @@ function classNames(...classes) {
 export default function Example() {
   const [news, setNews] = useState([]);
   //current tab
-  const [currentTab, setCurrentTab] = useState("science");
+  const [currentTab, setCurrentTab] = useState("");
   useEffect(() => {}, [currentTab]);
   const [categories] = useState({
     Entertainment: "Entertainment",
@@ -22,28 +22,29 @@ export default function Example() {
   });
   useEffect(() => {
     axios
+      // .get(
+      //   `https://backend.saketkhare2000.repl.co/api/news?category=${currentTab}&country=in`
+      // )
       .get(
-        `https://backend.saketkhare2000.repl.co/api/news?category=${currentTab}&country=in`
+        `https://newsapi.org/v2/top-headlines?category=${currentTab}&country=in&apiKey=50431c5b15f84f16babb377b1eca617c`
       )
       .then((res) => {
-        setNews(res.data);
+        setNews(res.data.articles);
       });
-  }, []);
+  }, [currentTab]);
 
   return (
-    <div className=" lg:max-w-5xl mx-auto ">
+    <div className="lg:max-w-5xl mx-auto ">
       <h2 className="font-sans text-5xl font-bold py-7 px-5 text-white">
         Home
       </h2>
 
       <div className="w-full p-5 py-4">
         <Tab.Group>
-          <Tab.List className="flex space-x-4 rounded overflow-x-auto">
+          <Tab.List className="flex space-x-4 rounded overflow-x-auto scrollbar-none">
             {Object.keys(categories).map((category, id) => (
               <Tab
                 key={id}
-                onChange={() => setCurrentTab(categories[id])}
-                // onChange={() => setCurrentTab(category)}
                 className={({ selected }) =>
                   classNames(
                     "w-full py-2 px-3 text-sm leading-5 font-medium rounded",
@@ -54,22 +55,17 @@ export default function Example() {
                   )
                 }
               >
-                {category}
-                {console.log(currentTab)}
+                <div onClick={() => setCurrentTab(category)}>{category}</div>
               </Tab>
             ))}
           </Tab.List>
-          <img
-            src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80"
-            alt=""
-            className="object-cover w-full h-64 rounded-xl mt-6 cursor-pointer"
-          />
+
           <Tab.Panels className="mt-2">
             {Object.keys(news).map((category) => (
               <Tab.Panel key={category}>
                 <div className="flex flex-col ">
-                  {news.map((post) => (
-                    <News post={post} />
+                  {news.map((post, id) => (
+                    <News key={id} post={post} />
                   ))}
                 </div>
               </Tab.Panel>
