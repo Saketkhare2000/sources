@@ -25,12 +25,6 @@ const News = ({ post }) => {
           />
         </div>
 
-        {/* <ul className="flex space-x-1 text-sm font-medium text-neutral-500 ">
-          <li>{post.commentCount} comments</li>
-          <li>&middot;</li>
-          <li>{post.reads} shares</li>
-        </ul> */}
-
         <a
           href={post.url}
           target="_blank"

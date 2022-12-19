@@ -7,10 +7,10 @@ export default function Home() {
     <div className="bg-neutral-900">
       <Head>
         <title>Sources</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/news.png" />
       </Head>
 
-      <Header />
+      {/* <Header /> */}
       <Tabs />
     </div>
   );
